@@ -1,18 +1,34 @@
 package mmm.comercial.centro.controller;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
+import mmm.comercial.centro.pojo.Cliente;
+import mmm.comercial.centro.service.interfaces.IClienteService;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.AbstractController;
 
-public class ClienteController extends AbstractController {
+@RequestMapping(value = "/clientes")
+@Controller
+public class ClienteController {
 
-	@Override
-	protected ModelAndView handleRequestInternal(HttpServletRequest arg0,
-			HttpServletResponse arg1) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	@Autowired
+	@Qualifier("clienteService")
+	private IClienteService cs;
+
+	@RequestMapping(value = "", method = RequestMethod.GET)
+	protected ModelAndView indexClientes() {
+
+		ModelAndView mav = new ModelAndView();
+		List<Cliente> clientes = cs.getAll();
+		mav.setViewName("/cliente/index");
+		mav.addObject("listClients", clientes);
+
+		return mav;
+	}	
 
 }
