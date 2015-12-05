@@ -64,13 +64,11 @@ Distribución de paquetes Java Resources:
   * **Pojo** - Clases principales del proyecto
   
   * **Service** - Clases correspondientes a la parte service de MVC
-  
-  * **Util** - Constantes
 
   * **WebService** - WebService de nuestros datos 
 
 Distribución de paquetes WebApp:
   
-  * **Resources** - BD, fuentes y estilos
+  * **Resources** - BD
 
-  * **WEB-INF** - Spring, views y web.xml
+  * **WEB-INF** - Spring, views, estilos y archivo de configuración web.xml
