@@ -24,7 +24,7 @@ public class ProductoDAOImpl implements IProductoDAO {
 	@Override
 	public int create(Producto prod) {
 		int codigo;
-		final String SQL = "INSERT INTO producto(nombre,descripcion,rutaImagen,disponible) VALUES (?,?,?,?)";
+		final String SQL = "INSERT INTO producto(nombre,descripcion,ruta_imagen,disponible) VALUES (?,?,?,?)";
 		codigo = jdbctemplate.update(SQL, prod.getNombre(), prod.getDescripcion(), prod.getRuta_imagen(), prod.getDisponible());
 		return codigo;
 	}
@@ -33,7 +33,7 @@ public class ProductoDAOImpl implements IProductoDAO {
 	public Producto getById(int id) {
 		Producto prod = null;
 
-		final String SQL = "SELECT id,nombre,descripcion,rutaImagen,disponible,cliente,tienda FROM producto WHERE codigo=?";
+		final String SQL = "SELECT id,nombre,descripcion,ruta_imagen,disponible,cliente,tienda FROM producto WHERE id=?";
 		try {
 			prod = jdbctemplate.queryForObject(SQL, new Object[] { id },
 					new ProductoMapper());
@@ -42,13 +42,41 @@ public class ProductoDAOImpl implements IProductoDAO {
 		}
 
 		return prod;
+	}	
+
+	@Override
+	public List<Producto> getByCliente(int cliente) {
+		List<Producto> productos = null;
+
+		final String SQL = "SELECT id,nombre,descripcion,ruta_imagen,disponible FROM producto WHERE cliente=?";
+		try {
+			productos = jdbctemplate.query(SQL, new Object[] { cliente }, new ProductoMapper());
+		} catch (EmptyResultDataAccessException e) {
+			productos = null;
+
+		}
+		return productos;
+	}
+
+	@Override
+	public List<Producto> getByTienda(int tienda) {
+		List<Producto> productos = null;
+
+		final String SQL = "SELECT id,nombre,descripcion,ruta_imagen,disponible FROM producto WHERE tienda=?";
+		try {
+			productos = jdbctemplate.query(SQL, new Object[] { tienda }, new ProductoMapper());
+		} catch (EmptyResultDataAccessException e) {
+			productos = null;
+
+		}
+		return productos;
 	}
 
 	@Override
 	public List<Producto> getAll() {
 		List<Producto> productos = null;
 
-		final String SQL = "SELECT id,nombre,descripcion,rutaImagen,disponible FROM producto";
+		final String SQL = "SELECT id,nombre,descripcion,ruta_imagen,disponible FROM producto";
 		try {
 			productos = jdbctemplate.query(SQL, new ProductoMapper());
 		} catch (EmptyResultDataAccessException e) {
@@ -62,7 +90,7 @@ public class ProductoDAOImpl implements IProductoDAO {
 	public int update(Producto prod) {
 		int codigo = -1;
 
-		final String SQL = "UPDATE producto SET nombre=?,descripcion=?,rutaImagen=?,disponible=? WHERE id=?";
+		final String SQL = "UPDATE producto SET nombre=?,descripcion=?,ruta_imagen=?,disponible=? WHERE id=?";
 		codigo = jdbctemplate.update(SQL, prod.getNombre(), prod.getDescripcion(), prod.getRuta_imagen(), prod.getDisponible());
 		return codigo;
 	}
@@ -73,6 +101,20 @@ public class ProductoDAOImpl implements IProductoDAO {
 		final String SQL = "DELETE FROM producto WHERE id=?";
 		cod = jdbctemplate.update(SQL, id);
 		return cod;
+	}	
+
+	@Override
+	public List<Producto> getAllJoinTienda() {
+		List<Producto> productos = null;
+
+		final String SQL = "SELECT producto.id, producto.descripcion, producto.disponible, tienda.nombre FROM producto INNER JOIN tienda ON producto.tienda=tienda.id";
+		try {
+			productos = jdbctemplate.query(SQL, new ProductoMapper());
+		} catch (EmptyResultDataAccessException e) {
+			productos = null;
+
+		}
+		return productos;
 	}
 
 	@Resource(name="myDataSource")
@@ -82,5 +124,6 @@ public class ProductoDAOImpl implements IProductoDAO {
 		jdbctemplate=new JdbcTemplate(datasource);
 
 	}
+
 
 }

@@ -1,5 +1,3 @@
-<%@page import="mmm.comercial.centro.pojo.Cliente"%>
-<%@page import="java.util.List"%>
 <%@include file="../includes/head.jsp"%>
 <%@include file="../includes/nav.jsp"%>
 
@@ -7,35 +5,33 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12 text-center">
-				<h2 class="section-heading">Listado de prueba</h2>
-				<h3 class="section-subheading text-muted">()CAMBIAR A TIENDAS)</h3>
+				CLIENTE
+				<h2 class="section-heading">LOGIN ${adminuser} ${adminpass}</h2>
+				<h3 class="section-subheading text-muted">REGISTRO ${adminuser} ${adminpass} ${nombre} ${apellidos}</h3>
 			</div>
 		</div>
 		<div class="row">
-		
-		<% List<Cliente> lista = (List<Cliente>) request.getAttribute("listClients");
-				for (Cliente cli : lista) {
-			%>
-			<div class="col-md-4 col-sm-6 portfolio-item">
-				<a href="#portfolioModal1" class="portfolio-link"
-					data-toggle="modal">
-					<div class="portfolio-hover">
-						<div class="portfolio-hover-content">
-							<i class="fa fa-plus fa-3x"></i>
+			<div class="col-lg-12">
+				<ul class="timeline">
+					<li>
+						<div class="timeline-panel">
+							<div class="timeline-heading">
+								<h4>Centro Comercial</h4>
+								<h4 class="subheading">M&M</h4>
+							</div>
+							<div class="timeline-body">
+								<p class="text-muted">Aquí podrás disfrutar de nuestro
+									mejores productos, desde nuestras deliciosas chucherías hasta
+									nuestra moda mas chick! A continuación tienes a tu disposición
+									todas nuestras tiendas. Haz un click en la que más te guste!</p>
+							</div>
 						</div>
-					</div> <img src="" class="img-responsive" alt="">
-				</a>
-				<div class="portfolio-caption">
-					<h4><%=cli.getNombre() %></h4>
-					<p class="text-muted"><%=cli.getApellidos() %></p>
-				</div>
+					</li>
+				</ul>
 			</div>
- 			<% }%>
 		</div>
 	</div>
+	
 </section>
 
-<%@include file="../includes/footer.jsp"%>
-
-</html>
 

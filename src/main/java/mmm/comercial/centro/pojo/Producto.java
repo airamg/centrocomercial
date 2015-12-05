@@ -12,7 +12,7 @@ public class Producto {
 		super();
 		setNombre("");
 		setDescripcion("");
-		setRuta_imagen("");
+		setRuta_imagen("resources/images/producto/default.png");
 		setDisponible(0);
 	}
 

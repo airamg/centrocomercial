@@ -13,6 +13,7 @@ public class Cliente extends Usuario {
 	public Cliente() {
 		super();
 		super.setRole("CLI");
+		super.setRuta_imagen("resources/images/cliente/default.png");
 		setListaProductos(new ArrayList<Producto>());
 	}
 

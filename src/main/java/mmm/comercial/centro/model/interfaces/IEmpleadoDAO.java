@@ -10,7 +10,13 @@ public interface IEmpleadoDAO {
 	
 	public int create(Empleado emp);
 	
-	public Empleado getById(int codigo);
+	public Empleado getById(int codigo);	
+	
+	public Empleado getByUser(String user);
+	
+	public Empleado getByRole(String role);
+	
+	public Empleado getByOnline();
 	
 	public List<Empleado> getAll();
 	

@@ -12,6 +12,8 @@ public interface ITiendaDAO {
 	
 	public Tienda getById(int codigo);
 	
+	public List<Tienda> getByEstado();
+	
 	public List<Tienda> getAll();
 	
 	public int update(Tienda tienda);

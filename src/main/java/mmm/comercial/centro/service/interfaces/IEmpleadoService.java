@@ -11,6 +11,12 @@ public interface IEmpleadoService {
 	
 	public Empleado getById(int codigo);
 	
+	public Empleado getByUser(String user);
+	
+	public Empleado getByRole(String role);
+	
+	public Empleado getByOnline();
+	
 	public List<Empleado> getAll();
 	
 	public int update(Empleado emp);

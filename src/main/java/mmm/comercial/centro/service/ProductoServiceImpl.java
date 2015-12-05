@@ -24,7 +24,21 @@ public class ProductoServiceImpl implements IProductoService {
 	public Producto getById(int id) {
 		Producto prod= productoDAO.getById(id);
 	    return prod;
-	  }
+	}
+	
+	@Override
+	public List<Producto> getByCliente(int cliente) {
+		List<Producto> productos=null;
+		productos = productoDAO.getByCliente(cliente);
+		return productos;
+	}
+
+	@Override
+	public List<Producto> getByTienda(int tienda) {
+		List<Producto> productos=null;
+		productos = productoDAO.getByTienda(tienda);
+		return productos;
+	}
 
 	@Override
 	public List<Producto> getAll() {
@@ -44,6 +58,13 @@ public class ProductoServiceImpl implements IProductoService {
 		int cod=productoDAO.delete(id);
 		return cod;
 		
+	}	
+
+	@Override
+	public List<Producto> getAllJoinTienda() {
+		List<Producto> productos=null;
+		productos = productoDAO.getAllJoinTienda();
+		return productos;
 	}
 
 	@Override
@@ -51,5 +72,6 @@ public class ProductoServiceImpl implements IProductoService {
 		this.productoDAO = productoDAO;
 		
 	}
+
 
 }

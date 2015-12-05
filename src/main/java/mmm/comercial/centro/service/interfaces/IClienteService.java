@@ -11,6 +11,12 @@ public interface IClienteService {
 	public int create(Cliente c);
 
 	public Cliente getById(int codigo);
+	
+	public Cliente getByUser(String user);
+	
+	public Cliente getByRole(String role);
+	
+	public Cliente getByOnline();
 
 	public List<Cliente> getAll();
 	

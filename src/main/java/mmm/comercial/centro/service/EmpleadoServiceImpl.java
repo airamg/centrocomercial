@@ -5,6 +5,7 @@ import java.util.List;
 import javax.annotation.Resource;
 
 
+
 import mmm.comercial.centro.model.EmpleadoDAOImpl;
 import mmm.comercial.centro.pojo.Empleado;
 import mmm.comercial.centro.service.interfaces.IEmpleadoService;
@@ -19,11 +20,28 @@ public class EmpleadoServiceImpl implements IEmpleadoService {
 		int codigo=empleadoDAO.create(emp);
 		return codigo;
 	}
+	
 	@Override
 	public Empleado getById(int id) {
 		Empleado emp= empleadoDAO.getById(id);
 	    return emp;
-	  }
+	}
+	
+	@Override
+	public Empleado getByUser(String user) {
+		Empleado emp= empleadoDAO.getByUser(user);
+	    return emp;
+	}
+	@Override
+	public Empleado getByRole(String role) {
+		Empleado emp= empleadoDAO.getByRole(role);
+	    return emp;
+	}
+	@Override
+	public Empleado getByOnline() {
+		Empleado emp= empleadoDAO.getByOnline();
+	    return emp;
+	}
 
 	@Override
 	public List<Empleado> getAll() {
@@ -47,8 +65,7 @@ public class EmpleadoServiceImpl implements IEmpleadoService {
 
 	@Override
 	public void setEmpleadoDAO(EmpleadoDAOImpl empleadoDAO) {
-		this.empleadoDAO = empleadoDAO;
-		
+		this.empleadoDAO = empleadoDAO;		
 	}
 
 }

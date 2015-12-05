@@ -21,8 +21,6 @@ public class EmpleadoMapper implements RowMapper<Empleado> {
 	    e.setOnline(rs.getInt("online"));
 	    e.setHora_conexion(rs.getDate("hora_conexion"));
 	    e.setRole(rs.getString("role"));
-	    //Tienda t = this.tMapper.mapRow(rs, column);
-	    //e.setTienda(t);
 	    return e;
 	}
 	

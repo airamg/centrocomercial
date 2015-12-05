@@ -8,9 +8,6 @@ import javax.sql.DataSource;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-
-
-
 import org.springframework.stereotype.Repository;
 
 import mmm.comercial.centro.model.interfaces.IEmpleadoDAO;
@@ -38,6 +35,43 @@ public class EmpleadoDAOImpl implements IEmpleadoDAO {
 		final String SQL="SELECT id,user,pass,nombre,apellidos,ruta_imagen,online,hora_conexion,role FROM empleado WHERE id=?";
 		try {
 			emp=jdbctemplate.queryForObject(SQL, new Object[] {id}, new EmpleadoMapper());
+		}	catch (EmptyResultDataAccessException e) {
+			emp=null;
+		}		
+		return emp;
+	}
+	
+	@Override
+	public Empleado getByUser(String user) {
+		Empleado emp=null;
+		final String SQL="SELECT id,user,pass,nombre,apellidos,ruta_imagen,online,hora_conexion,role FROM empleado WHERE user=?";
+		try {
+			emp=jdbctemplate.queryForObject(SQL, new Object[] { user }, new EmpleadoMapper());
+		}	catch (EmptyResultDataAccessException e) {
+			emp=null;
+		}		
+		return emp;
+	}
+
+	@Override
+	public Empleado getByRole(String role) {
+		Empleado emp=null;
+		final String SQL="SELECT id,user,pass,nombre,apellidos,ruta_imagen,online,hora_conexion,role FROM empleado WHERE role=?";
+		try {
+			emp=jdbctemplate.queryForObject(SQL, new Object[] { role }, new EmpleadoMapper());
+		}	catch (EmptyResultDataAccessException e) {
+			emp=null;
+		}		
+		return emp;
+	}
+
+	@Override
+	public Empleado getByOnline() {
+		Empleado emp=null;
+		int online = 1;
+		final String SQL="SELECT id,user,pass,nombre,apellidos,ruta_imagen,online,hora_conexion,role FROM empleado WHERE online=?";
+		try {
+			emp=jdbctemplate.queryForObject(SQL, new Object[] { online }, new EmpleadoMapper());
 		}	catch (EmptyResultDataAccessException e) {
 			emp=null;
 		}		
@@ -81,7 +115,6 @@ public class EmpleadoDAOImpl implements IEmpleadoDAO {
 	public void setDatasource(DataSource datasource) {
 		this.datasource=datasource;
 		jdbctemplate=new JdbcTemplate(datasource);
-		
 		
 	}
 	

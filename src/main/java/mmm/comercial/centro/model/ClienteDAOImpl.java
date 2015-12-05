@@ -13,6 +13,7 @@ import mmm.comercial.centro.model.interfaces.IClienteDAO;
 import mmm.comercial.centro.model.mappers.ClienteMapper;
 import mmm.comercial.centro.pojo.Cliente;
 
+
 @Repository("clienteDAO")
 public class ClienteDAOImpl implements IClienteDAO {
 
@@ -37,6 +38,46 @@ public class ClienteDAOImpl implements IClienteDAO {
 		final String SQL = "SELECT id,user,pass,nombre,apellidos,ruta_imagen,online,hora_conexion,role FROM cliente WHERE id=?";
 		try {
 			c = jdbctemplate.queryForObject(SQL, new Object[] { codigo },
+					new ClienteMapper());
+		} catch (EmptyResultDataAccessException e) {
+			c = null;
+		}
+		return c;
+	}
+	
+	@Override
+	public Cliente getByUser(String user) {
+		Cliente c = null;
+		final String SQL = "SELECT id,user,pass,nombre,apellidos,ruta_imagen,online,hora_conexion,role FROM cliente WHERE user=?";
+		try {
+			c = jdbctemplate.queryForObject(SQL, new Object[] { user },
+					new ClienteMapper());
+		} catch (EmptyResultDataAccessException e) {
+			c = null;
+		}
+		return c;
+	}
+
+	@Override
+	public Cliente getByRole(String role) {
+		Cliente c = null;
+		final String SQL = "SELECT id,user,pass,nombre,apellidos,ruta_imagen,online,hora_conexion,role FROM cliente WHERE role=?";
+		try {
+			c = jdbctemplate.queryForObject(SQL, new Object[] { role },
+					new ClienteMapper());
+		} catch (EmptyResultDataAccessException e) {
+			c = null;
+		}
+		return c;
+	}
+
+	@Override
+	public Cliente getByOnline() {
+		Cliente c = null;
+		int online = 1;
+		final String SQL = "SELECT id,user,pass,nombre,apellidos,ruta_imagen,online,hora_conexion,role FROM cliente WHERE online=?";
+		try {
+			c = jdbctemplate.queryForObject(SQL, new Object[] { online },
 					new ClienteMapper());
 		} catch (EmptyResultDataAccessException e) {
 			c = null;
@@ -81,5 +122,6 @@ public class ClienteDAOImpl implements IClienteDAO {
 		jdbctemplate=new JdbcTemplate(datasource);
 
 	}
+
 
 }

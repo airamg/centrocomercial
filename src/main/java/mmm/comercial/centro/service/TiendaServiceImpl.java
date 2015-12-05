@@ -25,7 +25,14 @@ public class TiendaServiceImpl implements ITiendaService {
 	public Tienda getById(int id) {
 		Tienda tienda= tiendaDAO.getById(id);
 	    return tienda;
-	  }
+	}	
+
+	@Override
+	public List<Tienda> getByEstado() {
+		List<Tienda> tiendas=null;
+		tiendas = tiendaDAO.getByEstado();
+		return tiendas;
+	}
 
 	@Override
 	public List<Tienda> getAll() {
@@ -44,7 +51,6 @@ public class TiendaServiceImpl implements ITiendaService {
 	public int delete(int id) {
 		int cod=tiendaDAO.delete(id);
 		return cod;
-		
 	}
 
 	@Override

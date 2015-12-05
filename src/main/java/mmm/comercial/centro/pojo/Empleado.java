@@ -6,7 +6,8 @@ public class Empleado extends Usuario {
 	
 	public Empleado() {
 		super();
-		super.setRole("EMP");		
+		super.setRole("EMP");
+		super.setRuta_imagen("resources/images/empleado/default.png");
 	}	
 	
 	public int getId() {

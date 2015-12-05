@@ -25,6 +25,24 @@ public class ClienteServiceImpl implements IClienteService {
 		Cliente cli = clienteDAO.getById(codigo);
 		return cli;
 	}
+	
+	@Override
+	public Cliente getByUser(String user) {
+		Cliente cli = clienteDAO.getByUser(user);
+		return cli;
+	}
+
+	@Override
+	public Cliente getByRole(String role) {
+		Cliente cli = clienteDAO.getByRole(role);
+		return cli;
+	}
+
+	@Override
+	public Cliente getByOnline() {
+		Cliente cli = clienteDAO.getByOnline();
+		return cli;
+	}
 
 	@Override
 	public List<Cliente> getAll() {
@@ -48,7 +66,6 @@ public class ClienteServiceImpl implements IClienteService {
 	@Override
 	public void setClienteDAO(ClienteDAOImpl clienteDAO) {
 		this.clienteDAO = clienteDAO;
-
 	}
 
 }
