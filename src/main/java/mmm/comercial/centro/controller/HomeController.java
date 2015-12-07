@@ -1,5 +1,8 @@
 package mmm.comercial.centro.controller;
 
+import java.sql.Date;
+import java.util.Calendar;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -17,7 +20,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-
 
 @Controller
 public class HomeController {
@@ -53,11 +55,11 @@ public class HomeController {
 	 * @param request
 	 * @param response
 	 * @param administrador
-	 * @return ModelAndView
+	 * @return String
 	 */
 	@RequestMapping(value = {"/","/home"}, method = RequestMethod.POST)
-	public ModelAndView executeLogin(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("administrador") Administrador administrador) {
-		ModelAndView model = null;
+	public String executeLogin(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("administrador") Administrador administrador) {
+		String model = null;
 		//comprobamos que el user existe en la bd
 		Administrador admin = admservice.getByUser(administrador.getUser());
 		if(admin!=null) {
@@ -67,16 +69,20 @@ public class HomeController {
 				Cliente cli = cliservice.getByUser(admin.getUser());
 				if(cli!=null) {
 					//si existe, comprobamos su pass
-					if((cli.getPass()).equals(administrador.getPass())) {
+					if((cli.getPass()).equals(administrador.getPass()) && (cli.getOnline()==0)) {
+						//actualizar la base de datos cambiando online a 1 y la hora de conexion
+						cli.setHora_conexion(new Date(Calendar.getInstance().getTime().getTime()));
+						cli.setOnline(1);
+						cliservice.update(cli);
 						//redirigimos a la pagina de clientes principal
 						request.setAttribute("adminuser", administrador.getUser());
 						request.setAttribute("adminpass", administrador.getPass());
-						model = new ModelAndView("/cliente/index");						
+						model = "redirect:clientes";						
 					} else {
-						model = new ModelAndView("error");
+						model = "error";
 					}
 				} else {
-					model = new ModelAndView("error");
+					model = "error";
 				}
 				
 				
@@ -85,20 +91,24 @@ public class HomeController {
 				Empleado emp = empservice.getByUser(admin.getUser());
 				if(emp!=null) {
 					//si existe, comprobamos su pass
-					if((emp.getPass()).equals(administrador.getPass())) {
+					if((emp.getPass()).equals(administrador.getPass()) && (emp.getOnline()==0)) {
+						//actualizar la base de datos cambiando online a 1 y la hora de conexion
+						emp.setHora_conexion(new Date(Calendar.getInstance().getTime().getTime()));
+						emp.setOnline(1);
+						empservice.update(emp);
 						//redirigimos a la pagina de empleados principal
 						request.setAttribute("adminuser", administrador.getUser());
 						request.setAttribute("adminpass", administrador.getPass());
-						model = new ModelAndView("/empleado/cuenta");						
+						model = "redirect:empleados";						
 					} else {
-						model = new ModelAndView("error");
+						model = "error";
 					}
 				} else {
-					model = new ModelAndView("error");
+					model = "error";
 				}
 			}			
 		} else {
-			model = new ModelAndView("error");
+			model = "error";
 		}
 		request.setAttribute("adminuser", administrador.getUser());
 		request.setAttribute("adminpass", administrador.getPass());

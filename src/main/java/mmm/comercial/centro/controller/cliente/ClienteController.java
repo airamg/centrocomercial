@@ -3,6 +3,7 @@ package mmm.comercial.centro.controller.cliente;
 import java.util.List;
 
 import mmm.comercial.centro.pojo.Tienda;
+import mmm.comercial.centro.service.interfaces.IClienteService;
 import mmm.comercial.centro.service.interfaces.ITiendaService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +14,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class ClienteController {
-
+public class ClienteController  {
+	
+	@Autowired
+	@Qualifier ("clienteService")
+	private IClienteService cliservice;	
+	
 	@Autowired
 	@Qualifier ("tiendaService")
 	private ITiendaService tiendservice;	
@@ -25,11 +30,14 @@ public class ClienteController {
 	 */	
 	@RequestMapping(value ="/clientes", method = RequestMethod.GET)
 	protected ModelAndView clicontroller()  {
+		//TODO comprobar quien es el cliente online
+		
 		ModelAndView tiend = new ModelAndView();
 		List<Tienda> tiendas = tiendservice.getAll();
 		tiend.addObject("lista_tiendas",tiendas);
 		tiend.setViewName("/cliente/index");
 		return tiend;		
 	}
-
+	
+	
 }
