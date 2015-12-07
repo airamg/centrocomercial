@@ -26,6 +26,10 @@ p.large {
     font-size: 16px;
 }
 
+p.nuevoprod {
+	color: #fec503;
+}
+
 a,
 a:hover,
 a:focus,
@@ -234,7 +238,6 @@ fieldset[disabled] .btn-xl.active {
     .navbar-default {
         padding: 25px 0;
         border: 0;
-        background-color: transparent;
         -webkit-transition: padding .3s;
         -moz-transition: padding .3s;
         transition: padding .3s;
@@ -575,6 +578,12 @@ section h3.section-subheading {
         padding: 0 30px 20px 20px;
         text-align: left;
     }
+}
+
+@media(max-width:768px) {
+	.timeline>li .timeline-image {
+       display:none;
+    }	
 }
 
 @media(min-width:992px) {
