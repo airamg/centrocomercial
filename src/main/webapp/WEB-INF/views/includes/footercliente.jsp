@@ -4,13 +4,14 @@
 			<div class="col-md-4">
 				<span class="copyright">Copyright &copy; Centro Comercial M&M 2015</span>
 			</div>
-			<div class="col-md-4">			
+			<div class="col-md-4">
 			</div>
 			<div class="col-md-4">
 				<ul class="list-inline quicklinks">
-					<li><a href="home">Inicia sesión</a></li>
-					<li><a href="registrocliente">Nuevo cliente</a></li>
-					<li><a href="registroempleado">Nuevo empleado</a></li>
+					<li><a href="clientes">Tiendas</a></li>
+					<!-- <li><a href="productos">Productos</a></li>  -->
+					<li><a href="clientes/cuenta">Mi cuenta</a></li>
+					<li><a href="clientes/logout">Cerrar sesión</a></li>
 				</ul>
 			</div>
 		</div>
