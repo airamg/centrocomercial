@@ -52,6 +52,12 @@ public class ProductoServiceImpl implements IProductoService {
 		int codigo=productoDAO.update(prod);
 		return codigo;
 	}
+	
+	@Override
+	public int updateClienteList(int idprod, int idcliente) {
+		int codigo=productoDAO.updateClienteList(idprod, idcliente);
+		return codigo;
+	}
 
 	@Override
 	public int delete(int id) {
@@ -61,9 +67,9 @@ public class ProductoServiceImpl implements IProductoService {
 	}	
 
 	@Override
-	public List<Producto> getAllJoinTienda() {
+	public List<Producto> getAllJoinTienda(int idtienda) {
 		List<Producto> productos=null;
-		productos = productoDAO.getAllJoinTienda();
+		productos = productoDAO.getAllJoinTienda(idtienda);
 		return productos;
 	}
 

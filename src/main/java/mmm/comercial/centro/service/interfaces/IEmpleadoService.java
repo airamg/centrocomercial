@@ -15,6 +15,8 @@ public interface IEmpleadoService {
 	
 	public Empleado getByRole(String role);
 	
+	public int getTiendaByEmpleado(int idempleado);
+	
 	public Empleado getByOnline();
 	
 	public List<Empleado> getAll();

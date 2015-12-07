@@ -37,6 +37,13 @@ public class EmpleadoServiceImpl implements IEmpleadoService {
 		Empleado emp= empleadoDAO.getByRole(role);
 	    return emp;
 	}
+	
+	@Override
+	public int getTiendaByEmpleado(int idempleado) {
+		int idtienda = empleadoDAO.getTiendaByEmpleado(idempleado);
+		return idtienda;
+	}
+	
 	@Override
 	public Empleado getByOnline() {
 		Empleado emp= empleadoDAO.getByOnline();
@@ -67,5 +74,6 @@ public class EmpleadoServiceImpl implements IEmpleadoService {
 	public void setEmpleadoDAO(EmpleadoDAOImpl empleadoDAO) {
 		this.empleadoDAO = empleadoDAO;		
 	}
+
 
 }
