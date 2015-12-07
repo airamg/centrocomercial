@@ -1,12 +1,12 @@
 package mmm.comercial.centro.pojo;
 
 public class Empleado extends Usuario {
-	
+		
 	private int id;
 	
 	public Empleado() {
 		super();
-		super.setRole("EMP");
+		super.setRole("EMP");	
 		super.setRuta_imagen("resources/images/empleado/default.png");
 	}	
 	

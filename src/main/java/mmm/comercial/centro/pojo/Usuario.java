@@ -4,14 +4,14 @@ import java.sql.Date;
 import java.util.Calendar;
 
 public class Usuario {
-	
+
 	private int id;
 	private String user;
 	private String pass;
 	private String nombre;
 	private String apellidos;
 	private String ruta_imagen;
-	private Date hora_conexion; // iniciar a la hora actual
+	private Date hora_conexion;
 	private int online; // 1: conectado - 0: desconectado
 	private String role; // CLI - EMP
 	
@@ -20,7 +20,6 @@ public class Usuario {
 		setPass("");
 		setNombre("");
 		setApellidos("");
-		setRuta_imagen(""); //PONER RUTA CARPETA DE IMAGENES
 		setHora_conexion(new Date(Calendar.getInstance().getTime().getTime()));
 		setOnline(1);	
 	}
@@ -38,7 +37,7 @@ public class Usuario {
 	}
 
 	public void setUser(String user) {
-		this.user=user;
+		this.user=user;		
 	}		
 	
 	public String getPass() {
@@ -46,7 +45,7 @@ public class Usuario {
 	}
 	
 	public void setPass(String pass) {
-		this.pass=pass;
+		this.pass=pass;		
 	}
 
 	public String getNombre() {
