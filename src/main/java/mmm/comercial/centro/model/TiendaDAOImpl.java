@@ -73,7 +73,7 @@ public class TiendaDAOImpl implements ITiendaDAO {
 	public int update(Tienda tienda) {
 		int codigo = -1;
 		final String SQL = "UPDATE tienda SET nombre=?,descripcion=?,ruta_imagen=?,tipo=?,estado=?,horario_abrir=?,horario_cerrar=? WHERE id=?";
-		codigo = jdbctemplate.update(SQL, tienda.getNombre(),tienda.getDescripcion(),tienda.getRuta_imagen(), tienda.getTipo(), tienda.getEstado(),	tienda.getHorario_abrir(), tienda.getHorario_cerrar());
+		codigo = jdbctemplate.update(SQL, tienda.getNombre(),tienda.getDescripcion(),tienda.getRuta_imagen(), tienda.getTipo(), tienda.getEstado(),	tienda.getHorario_abrir(), tienda.getHorario_cerrar(), tienda.getId());
 		return codigo;
 	}
 

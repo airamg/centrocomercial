@@ -4,8 +4,6 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
-
-
 import mmm.comercial.centro.pojo.Cliente;
 
 public interface IClienteDAO {	

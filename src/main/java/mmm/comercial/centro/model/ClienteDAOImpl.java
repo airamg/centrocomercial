@@ -26,8 +26,8 @@ public class ClienteDAOImpl implements IClienteDAO {
 	public int create(Cliente c) {
 		int codigo = -1;
 		final String SQL = "INSERT INTO cliente(user,pass,nombre,apellidos,ruta_imagen,online,hora_conexion,role) VALUES (?,?,?,?,?,?,?,?)";
-		codigo = jdbctemplate.update(SQL, c.getUser(), c.getPass(),
-				c.getApellidos(), c.getRuta_imagen(), c.getOnline(),
+		codigo = jdbctemplate.update(SQL, c.getUser(), c.getPass(), c.getNombre(),
+				c.getApellidos(), c.getRuta_imagen(), c.getOnline(), c.getHora_conexion(),
 				c.getRole());
 		return codigo;
 	}
@@ -103,7 +103,7 @@ public class ClienteDAOImpl implements IClienteDAO {
 		final String SQL = "UPDATE cliente SET user=?,pass=?,nombre=?,apellidos=?,ruta_imagen=?,online=?,hora_conexion=?,role=? WHERE id=?";
 		codigo = jdbctemplate.update(SQL, c.getUser(), c.getPass(),
 				c.getNombre(), c.getApellidos(), c.getRuta_imagen(),
-				c.getOnline(), c.getHora_conexion(), c.getRole());
+				c.getOnline(), c.getHora_conexion(), c.getRole(), c.getId());
 		return codigo;
 	}
 

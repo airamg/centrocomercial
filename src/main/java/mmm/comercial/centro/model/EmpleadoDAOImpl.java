@@ -7,7 +7,6 @@ import javax.sql.DataSource;
 
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
-
 import org.springframework.stereotype.Repository;
 
 import mmm.comercial.centro.model.interfaces.IEmpleadoDAO;
@@ -64,6 +63,18 @@ public class EmpleadoDAOImpl implements IEmpleadoDAO {
 		}		
 		return emp;
 	}
+	
+	@Override
+	public int getTiendaByEmpleado(int idempleado) {
+		int idtienda;
+		final String SQL="SELECT tienda FROM empleado WHERE id=?";
+		try {
+			idtienda=jdbctemplate.queryForObject(SQL, new Object[] {idempleado}, Integer.class);
+		}	catch (EmptyResultDataAccessException e) {
+			idtienda=-1;
+		}		
+		return idtienda;
+	}
 
 	@Override
 	public Empleado getByOnline() {
@@ -98,7 +109,7 @@ public class EmpleadoDAOImpl implements IEmpleadoDAO {
 		
 		final String SQL="UPDATE empleado SET user=?,pass=?,nombre=?,apellidos=?,ruta_imagen=?,online=?,hora_conexion=?,role=? WHERE id=?";
 		
-		codigo=jdbctemplate.update(SQL,emp.getUser(),emp.getPass(), emp.getNombre(),emp.getApellidos(),emp.getRuta_imagen(),emp.getOnline(),emp.getHora_conexion(),emp.getRole());
+		codigo=jdbctemplate.update(SQL,emp.getUser(),emp.getPass(), emp.getNombre(),emp.getApellidos(),emp.getRuta_imagen(),emp.getOnline(),emp.getHora_conexion(),emp.getRole(), emp.getId());
 		return codigo;
 	}
 

@@ -91,7 +91,15 @@ public class ProductoDAOImpl implements IProductoDAO {
 		int codigo = -1;
 
 		final String SQL = "UPDATE producto SET nombre=?,descripcion=?,ruta_imagen=?,disponible=? WHERE id=?";
-		codigo = jdbctemplate.update(SQL, prod.getNombre(), prod.getDescripcion(), prod.getRuta_imagen(), prod.getDisponible());
+		codigo = jdbctemplate.update(SQL, prod.getNombre(), prod.getDescripcion(), prod.getRuta_imagen(), prod.getDisponible(), prod.getId());
+		return codigo;
+	}
+	
+	@Override
+	public int updateClienteList(int idprod, int idcliente) {
+		int codigo = -1;
+		final String SQL = "UPDATE producto SET cliente=? WHERE id=?";
+		codigo = jdbctemplate.update(SQL, idcliente, idprod);
 		return codigo;
 	}
 
@@ -104,15 +112,14 @@ public class ProductoDAOImpl implements IProductoDAO {
 	}	
 
 	@Override
-	public List<Producto> getAllJoinTienda() {
+	public List<Producto> getAllJoinTienda(int idtienda) {
 		List<Producto> productos = null;
 
-		final String SQL = "SELECT producto.id, producto.descripcion, producto.disponible, tienda.nombre FROM producto INNER JOIN tienda ON producto.tienda=tienda.id";
+		final String SQL = "SELECT producto.id, producto.descripcion, producto.ruta_imagen, producto.disponible, tienda.nombre FROM producto INNER JOIN tienda ON producto.tienda=?";
 		try {
-			productos = jdbctemplate.query(SQL, new ProductoMapper());
+			productos = jdbctemplate.query(SQL, new Object[] { idtienda }, new ProductoMapper());
 		} catch (EmptyResultDataAccessException e) {
 			productos = null;
-
 		}
 		return productos;
 	}
@@ -124,6 +131,7 @@ public class ProductoDAOImpl implements IProductoDAO {
 		jdbctemplate=new JdbcTemplate(datasource);
 
 	}
+
 
 
 }

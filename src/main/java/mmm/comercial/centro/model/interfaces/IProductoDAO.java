@@ -20,9 +20,11 @@ public interface IProductoDAO {
 	
 	public int update(Producto prod);
 	
+	public int updateClienteList(int idprod, int idcliente);
+	
 	public int delete(int codigo);
 	
-	public List<Producto> getAllJoinTienda();
+	public List<Producto> getAllJoinTienda(int idtienda);
 
 	public void setDatasource(DataSource datasource);
 

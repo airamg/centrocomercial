@@ -6,7 +6,7 @@ import javax.sql.DataSource;
 
 import mmm.comercial.centro.pojo.Administrador;
 
-	public interface IAdministradorDAO {
+public interface IAdministradorDAO {
 	
 	public Administrador getById(int codigo);
 	

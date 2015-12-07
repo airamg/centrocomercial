@@ -73,7 +73,7 @@ public class AdministradorDAOImpl implements IAdministradorDAO {
 	public int update(Administrador a) {
 		int codigo = -1;
 		final String SQL = "UPDATE administrador SET user=?,pass=?,role=? WHERE id=?";
-		codigo = jdbctemplate.update(SQL, a.getUser(), a.getPass(), a.getRole(),a.getId());
+		codigo = jdbctemplate.update(SQL, a.getUser(), a.getPass(), a.getRole(), a.getId());
 		return codigo;
 	}
 
