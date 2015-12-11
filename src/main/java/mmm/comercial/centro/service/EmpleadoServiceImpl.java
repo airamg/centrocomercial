@@ -4,8 +4,6 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-
-
 import mmm.comercial.centro.model.EmpleadoDAOImpl;
 import mmm.comercial.centro.pojo.Empleado;
 import mmm.comercial.centro.service.interfaces.IEmpleadoService;
@@ -18,6 +16,12 @@ public class EmpleadoServiceImpl implements IEmpleadoService {
 	@Override
 	public int create(Empleado emp) {
 		int codigo=empleadoDAO.create(emp);
+		return codigo;
+	}
+
+	@Override
+	public int createAndUpdateTienda(Empleado emp, int idtienda) {
+		int codigo=empleadoDAO.createAndUpdateTienda(emp, idtienda);
 		return codigo;
 	}
 	
@@ -74,6 +78,5 @@ public class EmpleadoServiceImpl implements IEmpleadoService {
 	public void setEmpleadoDAO(EmpleadoDAOImpl empleadoDAO) {
 		this.empleadoDAO = empleadoDAO;		
 	}
-
 
 }

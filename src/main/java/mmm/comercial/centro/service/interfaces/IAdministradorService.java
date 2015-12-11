@@ -5,8 +5,9 @@ import java.util.List;
 import mmm.comercial.centro.model.AdministradorDAOImpl;
 import mmm.comercial.centro.pojo.Administrador;
 
-
 public interface IAdministradorService {
+	
+	public int create(Administrador a);
 	
 	public Administrador getById(int codigo);
 	

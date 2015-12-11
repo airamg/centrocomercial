@@ -10,6 +10,8 @@ public interface IProductoDAO {
 	
 	public int create(Producto prod);
 	
+	public int createAndUpdateTienda(Producto prod, int idtienda);
+	
 	public Producto getById(int codigo);
 	
 	public List<Producto> getByCliente(int cliente);
@@ -21,6 +23,8 @@ public interface IProductoDAO {
 	public int update(Producto prod);
 	
 	public int updateClienteList(int idprod, int idcliente);
+	
+	public int updateTiendaList(int idprod, int idtienda);
 	
 	public int delete(int codigo);
 	

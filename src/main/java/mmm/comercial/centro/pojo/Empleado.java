@@ -1,7 +1,7 @@
 package mmm.comercial.centro.pojo;
 
 public class Empleado extends Usuario {
-		
+
 	private int id;
 	
 	public Empleado() {

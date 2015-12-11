@@ -8,6 +8,8 @@ import mmm.comercial.centro.pojo.Administrador;
 
 public interface IAdministradorDAO {
 	
+	public int create(Administrador a);
+	
 	public Administrador getById(int codigo);
 	
 	public Administrador getByUser(String user);

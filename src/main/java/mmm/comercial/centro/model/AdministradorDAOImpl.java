@@ -22,6 +22,14 @@ public class AdministradorDAOImpl implements IAdministradorDAO {
 	private DataSource datasource;
 
 	@Override
+	public int create(Administrador a) {
+		int codigo = -1;
+		final String SQL = "INSERT INTO administrador(user,pass,role) VALUES (?,?,?)";
+		codigo = jdbctemplate.update(SQL, a.getUser(), a.getPass(), a.getRole());
+		return codigo;
+	}
+	
+	@Override
 	public Administrador getById(int id) {
 		Administrador admin = null;
 		final String SQL = "SELECT id,user,pass,role FROM administrador WHERE id=?";
@@ -92,6 +100,7 @@ public class AdministradorDAOImpl implements IAdministradorDAO {
 		jdbctemplate = new JdbcTemplate(datasource);
 
 	}
+
 
 	
 }

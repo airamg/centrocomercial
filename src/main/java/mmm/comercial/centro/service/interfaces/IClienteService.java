@@ -5,7 +5,6 @@ import java.util.List;
 import mmm.comercial.centro.model.ClienteDAOImpl;
 import mmm.comercial.centro.pojo.Cliente;
 
-
 public interface IClienteService {
 
 	public int create(Cliente c);

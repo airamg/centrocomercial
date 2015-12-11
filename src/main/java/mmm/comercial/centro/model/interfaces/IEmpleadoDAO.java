@@ -10,6 +10,8 @@ public interface IEmpleadoDAO {
 	
 	public int create(Empleado emp);
 	
+	public int createAndUpdateTienda(Empleado emp, int idtienda);
+	
 	public Empleado getById(int codigo);	
 	
 	public Empleado getByUser(String user);

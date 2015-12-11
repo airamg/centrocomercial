@@ -12,6 +12,12 @@ public class AdministradorServiceImpl implements IAdministradorService {
 
 	@Resource(name="administradorDAO")
 	private AdministradorDAOImpl administradorDAO;
+
+	@Override
+	public int create(Administrador a) {
+		int codigo = administradorDAO.create(a);
+		return codigo;
+	}	
 	
 	@Override
 	public Administrador getById(int id) {
@@ -48,5 +54,6 @@ public class AdministradorServiceImpl implements IAdministradorService {
 	public void setAdministradorDAO(AdministradorDAOImpl administradorDAO) {
 		this.administradorDAO = administradorDAO;		
 	}
+
 
 }

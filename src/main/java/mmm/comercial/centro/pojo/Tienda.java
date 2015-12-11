@@ -25,7 +25,7 @@ public class Tienda {
 		setDescripcion("");
 		setRuta_imagen("resources/images/tienda/default.png");
 		setTipo("");
-		setEstado(0);
+		setEstado(1);
 		setHorario_abrir("08:00");
 		setHorario_cerrar("22:00");
 		setListaProductos(new ArrayList<Producto>());

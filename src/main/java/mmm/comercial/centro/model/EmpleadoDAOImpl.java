@@ -29,6 +29,14 @@ public class EmpleadoDAOImpl implements IEmpleadoDAO {
 	}
 
 	@Override
+	public int createAndUpdateTienda(Empleado emp, int idtienda) {
+		int codigo;
+		final String SQL = "INSERT INTO empleado(user,pass,nombre,apellidos,ruta_imagen,online,hora_conexion,role,tienda) VALUES (?,?,?,?,?,?,?,?,?)";
+		codigo = jdbctemplate.update(SQL, emp.getUser(),emp.getPass(),emp.getNombre(),emp.getApellidos(),emp.getRuta_imagen(),emp.getOnline(),emp.getHora_conexion(),emp.getRole(), idtienda);
+		return codigo;
+	}
+
+	@Override
 	public Empleado getById(int id) {
 		Empleado emp=null;
 		final String SQL="SELECT id,user,pass,nombre,apellidos,ruta_imagen,online,hora_conexion,role FROM empleado WHERE id=?";
@@ -128,6 +136,7 @@ public class EmpleadoDAOImpl implements IEmpleadoDAO {
 		jdbctemplate=new JdbcTemplate(datasource);
 		
 	}
+
 	
 
 }

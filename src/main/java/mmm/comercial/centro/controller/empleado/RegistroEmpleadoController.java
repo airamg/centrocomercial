@@ -77,7 +77,7 @@ public class RegistroEmpleadoController {
 				model = "error";
 			}
 		} else {
-			model = "error2empleado";
+			model = "error";
 		}
 		
 

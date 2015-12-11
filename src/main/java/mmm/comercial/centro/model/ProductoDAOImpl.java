@@ -28,6 +28,15 @@ public class ProductoDAOImpl implements IProductoDAO {
 		codigo = jdbctemplate.update(SQL, prod.getNombre(), prod.getDescripcion(), prod.getRuta_imagen(), prod.getDisponible());
 		return codigo;
 	}
+	
+
+	@Override
+	public int createAndUpdateTienda(Producto prod, int idtienda) {
+		int codigo;
+		final String SQL = "INSERT INTO producto(nombre,descripcion,ruta_imagen,disponible,tienda) VALUES (?,?,?,?,?)";
+		codigo = jdbctemplate.update(SQL, prod.getNombre(), prod.getDescripcion(), prod.getRuta_imagen(), prod.getDisponible(), idtienda);
+		return codigo;
+	}
 
 	@Override
 	public Producto getById(int id) {
@@ -102,6 +111,14 @@ public class ProductoDAOImpl implements IProductoDAO {
 		codigo = jdbctemplate.update(SQL, idcliente, idprod);
 		return codigo;
 	}
+	
+	@Override
+	public int updateTiendaList(int idprod, int idtienda) {
+		int codigo = -1;
+		final String SQL = "UPDATE producto SET tienda=? WHERE id=?";
+		codigo = jdbctemplate.update(SQL, idtienda, idprod);
+		return codigo;
+	}
 
 	@Override
 	public int delete(int id) {
@@ -131,7 +148,5 @@ public class ProductoDAOImpl implements IProductoDAO {
 		jdbctemplate=new JdbcTemplate(datasource);
 
 	}
-
-
-
+	
 }

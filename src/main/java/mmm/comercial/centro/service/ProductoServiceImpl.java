@@ -19,6 +19,12 @@ public class ProductoServiceImpl implements IProductoService {
 		int codigo=productoDAO.create(prod);
 		return codigo;
 	}
+	
+	@Override
+	public int createAndUpdateTienda(Producto prod, int idtienda) {
+		int codigo=productoDAO.createAndUpdateTienda(prod, idtienda);
+		return codigo;
+	}
 
 	@Override
 	public Producto getById(int id) {
@@ -58,6 +64,12 @@ public class ProductoServiceImpl implements IProductoService {
 		int codigo=productoDAO.updateClienteList(idprod, idcliente);
 		return codigo;
 	}
+	
+	@Override
+	public int updateTiendaList(int idprod, int idtienda) {
+		int codigo=productoDAO.updateTiendaList(idprod, idtienda);
+		return codigo;
+	}
 
 	@Override
 	public int delete(int id) {
@@ -78,6 +90,8 @@ public class ProductoServiceImpl implements IProductoService {
 		this.productoDAO = productoDAO;
 		
 	}
+
+	
 
 
 }

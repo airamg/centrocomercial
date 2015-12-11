@@ -3,8 +3,8 @@ package mmm.comercial.centro.pojo;
 import java.sql.Date;
 import java.util.Calendar;
 
-public class Usuario {
-
+public class Usuario  {
+	
 	private int id;
 	private String user;
 	private String pass;
@@ -45,7 +45,7 @@ public class Usuario {
 	}
 	
 	public void setPass(String pass) {
-		this.pass=pass;		
+		this.pass=pass;
 	}
 
 	public String getNombre() {

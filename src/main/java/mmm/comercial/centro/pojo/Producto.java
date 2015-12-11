@@ -13,7 +13,7 @@ public class Producto {
 		setNombre("");
 		setDescripcion("");
 		setRuta_imagen("resources/images/producto/default.png");
-		setDisponible(0);
+		setDisponible(1);
 	}
 
 	public int getId() {

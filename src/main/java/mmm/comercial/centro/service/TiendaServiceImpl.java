@@ -5,7 +5,6 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import mmm.comercial.centro.model.TiendaDAOImpl;
-
 import mmm.comercial.centro.pojo.Tienda;
 import mmm.comercial.centro.service.interfaces.ITiendaService;
 
