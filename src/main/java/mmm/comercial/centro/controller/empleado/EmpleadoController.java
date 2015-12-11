@@ -48,6 +48,8 @@ public class EmpleadoController  {
 			
 			//sacar la lista de productos de la tienda del empleado online
 			List<Producto> productos = prodservice.getByTienda(idtienda);
+			
+			//TODO actualizar el id de a tienda del empleado actual
 		
 			prod.addObject("lista_productos",productos);
 			prod.addObject("empleado",emp);

@@ -3,7 +3,9 @@ package mmm.comercial.centro.controller.empleado;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import mmm.comercial.centro.pojo.Administrador;
 import mmm.comercial.centro.pojo.Empleado;
+import mmm.comercial.centro.service.interfaces.IAdministradorService;
 import mmm.comercial.centro.service.interfaces.IEmpleadoService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,10 @@ public class RegistroEmpleadoController {
 	@Autowired
 	@Qualifier("empleadoService")
 	private IEmpleadoService empservice;
+	
+	@Autowired
+	@Qualifier("administradorService")
+	private IAdministradorService admservice;
 
 	/**
 	 * Método para la página principal con el registro de empleado
@@ -39,34 +45,42 @@ public class RegistroEmpleadoController {
 	 * Método de registro que redirige a la página de clientes
 	 * @param request
 	 * @param response
-	 * @param administrador
+	 * @param empleado
 	 * @return String
 	 */
 	@RequestMapping(value = "/registroempleado", method = RequestMethod.POST)
 	public String executeRegistroEmpleado(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("empleado") Empleado empleado) {
 		String model = null;
-		//comprobar que el nuevo empleado no este repetido
-		Empleado e = empservice.getByUser(empleado.getUser());
-		if(e==null) {
-			//guardar en la bd el nuevo empleado
-			Empleado emp = new Empleado();			
-			emp.setUser(empleado.getUser());
-			emp.setPass(empleado.getPass());
-			emp.setNombre(empleado.getNombre());
-			emp.setApellidos(empleado.getApellidos());
-			empservice.create(emp);
-			request.setAttribute("adminuser", empleado.getUser());
-			request.setAttribute("adminpass", empleado.getPass());
-			request.setAttribute("nombre", empleado.getNombre());
-			request.setAttribute("apellidos", empleado.getApellidos());
-			model = "redirect:empleados";			
+		//comprobar quien esta online
+		Empleado empl = empservice.getByOnline();
+		if(empl==null) {
+			//comprobar que el nuevo empleado no este repetido
+			Empleado e = empservice.getByUser(empleado.getUser());
+			if(e==null) {
+				//guardar en la bd el nuevo empleado
+				Empleado emp = new Empleado();			
+				emp.setUser(empleado.getUser());
+				emp.setPass(empleado.getPass());
+				emp.setNombre(empleado.getNombre());
+				emp.setApellidos(empleado.getApellidos());
+				//incluir numero aleatorio para la tienda de empleado
+				int idtienda = (int) Math.floor(Math.random()*(1-7+1)+7);
+				empservice.createAndUpdateTienda(emp, idtienda);
+				Administrador adm = new Administrador();
+				adm.setUser(empleado.getUser());
+				adm.setPass(empleado.getPass());
+				adm.setRole("EMP");
+				admservice.create(adm);
+
+				model = "redirect:empleados";			
+			} else {
+				model = "error";
+			}
 		} else {
-			model = "error";
+			model = "error2empleado";
 		}
-		request.setAttribute("adminuser", empleado.getUser());
-		request.setAttribute("adminpass", empleado.getPass());
-		request.setAttribute("nombre", empleado.getNombre());
-		request.setAttribute("apellidos", empleado.getApellidos());
+		
+
 		return model;
 	}
 
