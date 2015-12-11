@@ -57,8 +57,6 @@ Distribución de paquetes Java Resources:
   
   * **Controller** - Controladores de cada clase principal
 
-  * **Exception** - Excepciones propias creadas
-
   * **Model** - Clases correspondientes al modelo de datos
   
   * **Pojo** - Clases principales del proyecto
