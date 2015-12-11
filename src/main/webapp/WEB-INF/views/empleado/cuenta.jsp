@@ -5,7 +5,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12 text-center">
-				<h2 class="section-heading">MI CUENTA DE EMPLEADO</h2>
+				<h2 class="section-heading2">MI CUENTA DE EMPLEADO</h2>
 				<h3 class="section-subheading text-muted">Última conexión:
 					${empleado.hora_conexion}</h3>
 			</div>
@@ -25,7 +25,7 @@
 								<p class="text-muted">${empleado.user}</p>
 							</div>
 							<div class="timeline-body">
-								<a href="empleados/modificar/${empleado.id}" class="btn btn-xl">Modificar
+								<a href="empleados/modificar" class="btn btn-xl">Modificar
 									datos</a>
 							</div>
 
@@ -43,7 +43,7 @@
 								<p class="text-muted">Tienda de ${tienda.tipo}</p>
 							</div>
 							<div class="timeline-body">
-								<a href="tiendas/modificar/${tienda.id}" class="btn btn-xl">Modificar
+								<a href="tiendas/modificar" class="btn btn-xl">Modificar
 									datos</a>							
 							</div>
 						</div>
@@ -60,7 +60,7 @@
 							</div>
 							<div class="timeline-body">
 								<c:forEach var="producto" items="${lista_productos}">
-									<p class="text-muted"><a href="productos/modificarborrar/${producto.id}" class="text-muted" >${producto.nombre}</a></p>
+									<p class="text-muted"><!-- <a href="productos/modificarborrar/${producto.id}" class="text-muted" > -->${producto.nombre}<!-- </a> --></p>
 								</c:forEach>
 								<a href="productos/nuevo" class="btn btn-xl">Nuevo</a>							
 							</div>
@@ -74,4 +74,3 @@
 
 
 <%@include file="../includes/footerempleado.jsp"%>
-

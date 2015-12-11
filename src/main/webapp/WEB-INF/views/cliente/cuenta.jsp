@@ -5,7 +5,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12 text-center">
-				<h2 class="section-heading">MI CUENTA DE CLIENTE</h2>
+				<h2 class="section-heading2">MI CUENTA DE CLIENTE</h2>
 				<h3 class="section-subheading text-muted">Última conexión:
 					${cliente.hora_conexion}</h3>
 			</div>
@@ -25,7 +25,16 @@
 								<p class="text-muted">${cliente.user}</p>
 							</div>
 							<div class="timeline-body">								
-								<a href="clientes/modificar/${cliente.id}" class="btn btn-xl">Modificar datos</a>						
+								<a href="clientes/modificar" class="btn btn-xl">Modificar datos</a>						
+							</div>
+							<div class="row">
+		<div class="col-lg-12 text-center">
+			<h2 class="section-heading"></h2>
+		
+		</div>
+	</div>
+							<div class="timeline-body">								
+								<a href="clientes/borrar" class="btn btn-xl">Borrar cuenta</a>						
 							</div>
 
 						</div>
