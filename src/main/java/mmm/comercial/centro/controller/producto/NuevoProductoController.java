@@ -67,6 +67,9 @@ public class NuevoProductoController {
 			p.setDescripcion(producto.getDescripcion());
 			prodservice.createAndUpdateTienda(p, idtienda);
 			
+			String nuevoprod = "NUEVO. Se ha añadido " + p.getNombre() + " a la lista.";
+			request.setAttribute("nuevo", nuevoprod);
+			
 			model = "redirect:/empleados/cuenta";
 		} else {
 			model = "error";	

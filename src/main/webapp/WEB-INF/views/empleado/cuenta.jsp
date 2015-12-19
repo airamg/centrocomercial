@@ -59,6 +59,7 @@
 								<h4>Lista de mis productos</h4>
 							</div>
 							<div class="timeline-body">
+								<p class="nuevoprod">${nuevo}</p>
 								<c:forEach var="producto" items="${lista_productos}">
 									<p class="text-muted"><!-- <a href="productos/modificarborrar/${producto.id}" class="text-muted" > -->${producto.nombre}<!-- </a> --></p>
 								</c:forEach>

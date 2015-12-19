@@ -1,7 +1,7 @@
 <%@include file="../includes/head.jsp"%>
 <%@include file="../includes/navempleado.jsp"%>
 
-<section>
+<section id="formulario" class="bg-light-gray">
 
 	<div class="container">
 		<div class="row">
